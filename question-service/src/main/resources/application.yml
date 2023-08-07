@@ -3,16 +3,21 @@ spring:
     name: question-service
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/questionDB
+    url: jdbc:postgresql://localhost:5432/question
     username: postgres
-    password: "postgres123"
+    password: "0000"
   jpa:
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-
+server:
+  port: 8090
+eureka:
+  client:
+    service-url:
+      defaultZone: http://registry-service:8761/eureka
 
 
 

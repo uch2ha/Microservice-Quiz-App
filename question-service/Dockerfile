@@ -26,7 +26,7 @@ WORKDIR /question-service
 COPY --from=build /question-service/target/question-service.jar /question-service/question-service.jar
 
 # Expose the port that the Spring Boot application will run on
-EXPOSE 8080
+EXPOSE 8090
 
 # Start the Spring Boot application when the container starts
 CMD ["java", "-jar", "/question-service/question-service.jar"]

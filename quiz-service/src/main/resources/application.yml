@@ -12,7 +12,9 @@ spring:
     properties:
         hibernate:
             dialect: org.hibernate.dialect.PostgreSQLDialect
-
-
 server:
-    port: 8090
+    port: 8070
+eureka:
+    client:
+        service-url:
+            defaultZone: http://registry-service:8761/eureka

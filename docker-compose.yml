@@ -1,5 +1,14 @@
 version: '3.1'
 services:
+  registry-service:
+    container_name: registry-service
+    build:
+      context: ./registry-service/
+      dockerfile: Dockerfile
+    ports:
+      - '8761:8761'
+    restart: unless-stopped
+
   questionDB:
     container_name: questionDB
     image: postgres
@@ -7,8 +16,26 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres123
       POSTGRES_DB: question
+    depends_on:
+      - registry-service
     ports:
       - '2345:5432'
+    restart: unless-stopped
+
+  question-service:
+    container_name: question-service
+    build:
+      context: ./question-service/
+      dockerfile: Dockerfile
+    ports:
+      - '8090:8090'
+    depends_on:
+      - questionDB
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://questionDB:5432/question
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
     restart: unless-stopped
 
   quizDB:
@@ -18,22 +45,36 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres123
       POSTGRES_DB: quiz
+    depends_on:
+      - registry-service
     ports:
-      - '3456:6543'
+      - '1234:5432'
     restart: unless-stopped
 
-  question-service:
-    container_name: question-service
+  quiz-service:
+    container_name: quiz-service
     build:
-      context: ./question-service/
+      context: ./quiz-service/
       dockerfile: Dockerfile
     ports:
-      - '8080:8080'
+      - '8070:8070'
     depends_on:
-      - questionDB
+      - quizDB
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://questionDB:5432/question
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://quizDB:5432/quiz
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres123
       - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
     restart: unless-stopped
+
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: ./api-gateway/
+      dockerfile: Dockerfile
+    ports:
+      - '8080:8080'
+    depends_on:
+      - registry-service
+    restart: unless-stopped
+
