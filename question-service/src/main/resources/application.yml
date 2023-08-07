@@ -3,9 +3,9 @@ spring:
     name: question-service
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/question
+    url: jdbc:postgresql://localhost:5432/questionDB
     username: postgres
-    password: "0000"
+    password: "postgres123"
   jpa:
     hibernate:
       ddl-auto: update
