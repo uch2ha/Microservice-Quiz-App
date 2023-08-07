@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: question-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/question
+    username: postgres
+    password: "0000"
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+
+
+
+
+
