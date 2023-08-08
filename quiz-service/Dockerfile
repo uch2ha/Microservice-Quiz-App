@@ -26,7 +26,7 @@ WORKDIR /quiz-service
 COPY --from=build /quiz-service/target/quiz-service.jar /quiz-service/quiz-service.jar
 
 # Expose the port that the Spring Boot application will run on
-EXPOSE 8091
+EXPOSE 8070
 
 # Start the Spring Boot application when the container starts
 CMD ["java", "-jar", "/quiz-service/quiz-service.jar"]
