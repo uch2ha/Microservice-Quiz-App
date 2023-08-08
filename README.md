@@ -74,10 +74,11 @@ The Quiz Service, responsible for quizzes, can be accessed at http://localhost:8
 
 All available routes:
 
- - Question service:
 
  ![Swagger](screenshots/question-service-swagger.png)
 
- - Quiz service:
 
  ![Swagger](screenshots/quiz-service-swagger.png)
+
+
+### Note: To interact with these endpoints, make requests to API Gateway at http://localhost:8080
