@@ -76,8 +76,8 @@ All available routes:
 
  - Question service:
 
- ![Swagger](screenshots/question-service-swagger.jpg)
+ ![Swagger](screenshots/question-service-swagger.png)
 
  - Quiz service:
 
- ![Swagger](screenshots/quiz-service-swagger.jpg)
+ ![Swagger](screenshots/quiz-service-swagger.png)
